@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembelajaran Online</title>
+
+  <!-- Menghubungkan font Over Light.otf dan Reach Story.ttf -->
+  <style>
+    @font-face {
+      font-family: 'Over Light';
+      src: url('assets/fonts/OverLight.otf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Reach Story';
+      src: url('assets/fonts/ReachStory.ttf') format('truetype');
+    }
+
+    /* Styling Global */
+    body {
+      font-family: 'Reach Story', sans-serif;
+      background-color: #CCD1DB; /* Pale Blue */
+      color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Header Styling */
+    h1 {
+      font-family: 'Over Light', sans-serif;
+      font-size: 2rem;
+      color: #85BFB4; /* Sky Blue */
+      margin-top: 50px;
+    }
+
+    /* Teks Penjelasan */
+    p {
+      font-size: 1.8rem;
+      color: #EB7096; /* Pink */
+      margin-top: 20px;
+    }
+
+    /* Tombol Styling */
+    .button {
+      padding: 12px 30px;
+      margin: 20px;
+      border: none;
+      background-color: #EDB240; /* Yellow */
+      color: white;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #F5F2F0; /* Beige */
+      color: #EDB240; /* Yellow */
+    }
+
+    /* Hidden content (for page transition) */
+    .hidden {
+      display: none;
+    }
+
+    video {
+      width: 80%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Halaman Utama -->
+  <div id="page1" class="page">
+    <h1>Selamat datang di pembelajaran online!</h1>
+    <p>Kali ini kita akan belajar sambil bernyanyi tentang kisah Nabi Nuh. Kamu siap?</p>
+    <button class="button" onclick="showPage('page2')">Siap</button>
+  </div>
+
+  <!-- Halaman Video 1 -->
+  <div id="page2" class="page hidden">
+    <h1>Putar video di bawah untuk mulai mendengar lagunya ya!</h1>
+    <video controls>
+      <source src="assets/videos/lagu_nabi_nuh.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <button class="button" onclick="showPage('page3')">Sudah Mendengarkan!</button>
+  </div>
+
+  <!-- Halaman Video 2 -->
+  <div id="page3" class="page hidden">
+    <h1>Sudah dengar lagunya kan? Sekarang, kita dengarkan lagi, sambil bernyanyi bersama ya! Siap?</h1>
+    <video controls>
+      <source src="assets/videos/lagu_nabi_nuh.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <button class="button" onclick="showPage('page4')">Selesai!</button>
+  </div>
+
+  <!-- Halaman Video Instrumental -->
+  <div id="page4" class="page hidden">
+    <h1>Wahh kamu hebat nyanyinya! Sekarang, ayo kita nyanyi lagi. Pastikan suaramu keras yaaa!</h1>
+    <video controls>
+      <source src="assets/videos/lagu_instrumental.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <button class="button" onclick="showPage('page5')">Selesai!</button>
+  </div>
+
+  <!-- Halaman Kuis -->
+  <div id="page5" class="page hidden">
+    <h1>Wah, kamu hebat banget! Setelah bernyanyi sambil belajar, kamu jadi tahu kisah tentang Nabi Nuh, kan? Kalau gitu, kamu siap untuk kuis?</h1>
+    <button class="button" onclick="showPage('quiz1')">Siap</button>
+    <button class="button" onclick="showPage('page2')">Tidak Siap</button>
+  </div>
+
+  <!-- Kuis Pertama -->
+  <div id="quiz1" class="page hidden">
+    <h1>Apa nama kaum Nabi Nuh?</h1>
+    <button class="button" onclick="checkAnswer('wrong', 'quiz1')">Bani Atid</button>
+    <button class="button" onclick="checkAnswer('correct', 'quiz2')">Bani Rasib</button>
+  </div>
+
+  <!-- Kuis Kedua -->
+  <div id="quiz2" class="page hidden">
+    <h1>Apa yang disembah oleh orang-orang kafir zaman Nabi Nuh?</h1>
+    <button class="button" onclick="checkAnswer('correct', 'quiz3')">Patung</button>
+    <button class="button" onclick="checkAnswer('wrong', 'quiz2')">Matahari</button>
+  </div>
+
+  <!-- Kuis Ketiga -->
+  <div id="quiz3" class="page hidden">
+    <h1>Siapa nama anak laki-laki Nabi Nuh yang ikut meremehkan Nabi Nuh?</h1>
+    <button class="button" onclick="checkAnswer('correct', 'quiz4')">Kan'an</button>
+    <button class="button" onclick="checkAnswer('wrong', 'quiz3')">Kan'sa</button>
+  </div>
+
+  <!-- Kuis Keempat -->
+  <div id="quiz4" class="page hidden">
+    <h1>Apa siksaan yang diturunkan oleh Allah untuk kaum Nabi Nuh?</h1>
+    <button class="button" onclick="checkAnswer('wrong', 'quiz4')">Gempa Bumi</button>
+    <button class="button" onclick="checkAnswer('correct', 'quiz5')">Banjir</button>
+  </div>
+
+  <!-- Kuis Kelima -->
+  <div id="quiz5" class="page hidden">
+    <h1>Golongan mana yang mau menerima ajarannya Nabi Nuh?</h1>
+    <button class="button" onclick="checkAnswer('correct', 'end')">Kaum Miskin</button>
+    <button class="button" onclick="checkAnswer('wrong', 'quiz5')">Kaum Petinggi Kafir</button>
+  </div>
+
+  <!-- Halaman Akhir -->
+  <div id="end" class="page hidden">
+    <h1>Selamat! Kamu berhasil menyelesaikan pembelajaran ini!</h1>
+    <p>Kamu sudah bisa memahami kisah Nabi Nuh AS dengan baik. Sekarang, diskusikan pesan moral dan hikmah yang bisa kamu dapat dari kisah Nabi Nuh ini bersama gurumu ya!</p>
+  </div>
+
+  <script>
+    // Fungsi untuk menampilkan halaman tertentu
+    function showPage(pageId) {
+      // Sembunyikan semua halaman
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.add('hidden'));
+
+      // Tampilkan halaman yang sesuai
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    // Fungsi untuk mengecek jawaban kuis
+    function checkAnswer(answer, nextPage) {
+      if (answer === 'wrong') {
+        alert('Oh no! Jawabanmu salah, coba lagi ya!');
+        showPage('quiz1'); // Mengulang kuis pertama
+      } else {
+        showPage(nextPage); // Lanjut ke halaman berikutnya
+      }
+    }
+
+    // Tampilkan halaman pertama ketika mulai
+    showPage('page1');
+  </script>
+
+</body>
+</html>
